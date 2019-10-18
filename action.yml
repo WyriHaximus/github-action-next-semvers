@@ -1,0 +1,22 @@
+name: 'Files in commit(range)'
+description: 'CSV list of files in the given commit'
+branding:
+  icon: 'clock'
+  color: 'orange'
+input:
+  version:
+    description: 'A SemVer version'
+    required: true
+outputs:
+  mayor:
+    description: 'Next Mayor Version'
+    required: true
+  minor:
+    description: 'Next Minor Version'
+    required: true
+  patch:
+    description: 'Next Patch Version'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
