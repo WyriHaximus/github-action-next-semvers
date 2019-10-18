@@ -1,0 +1,15 @@
+name: Continuous Integration
+on:
+  push:
+  pull_request:
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    container:
+      image: wyrihaximusnet/php:7.3-zts-alpine3.10-dev-root
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: composer install --ansi --no-progress --no-interaction --prefer-dist
+      - name: Run QA
+        run: make ci-extended

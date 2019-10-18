@@ -1,14 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
-use Version\Version;
+use WyriHaximus\Github\Actions\NextSemVers\Next;
 
-require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+require __DIR__ . \DIRECTORY_SEPARATOR . 'vendor' . \DIRECTORY_SEPARATOR . 'autoload.php';
 
-const VERSION = 'INPUT_VERSION';
+exit((function (): int {
+    $versionString = \getenv('INPUT_VERSION');
 
-(function () {
-    $version = Version::fromString(getenv(VERSION));
-    echo PHP_EOL, '::set-output name=mayor::' . (string)$version->incrementMajor(), PHP_EOL;
-    echo PHP_EOL, '::set-output name=minor::' . (string)$version->incrementMinor(), PHP_EOL;
-    echo PHP_EOL, '::set-output name=patch::' . (string)$version->incrementPatch(), PHP_EOL;
-})();
+    if ($versionString === false) {
+        return 1;
+    }
+
+    echo Next::run($versionString);
+
+    return 0;
+})());

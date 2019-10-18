@@ -1,6 +1,88 @@
 {
+  "name": "void/void",
+  "description": "void",
   "require": {
     "php": "^7.3",
     "nikolaposa/version": "^3.2"
+  },
+  "require-dev": {
+    "wyrihaximus/test-utilities": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "WyriHaximus\\Github\\Actions\\NextSemVers\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WyriHaximus\\Tests\\Github\\Actions\\NextSemVers\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "composer normalize || true"
+    ],
+    "post-update-cmd": [
+      "composer normalize"
+    ],
+    "ci-coverage": [
+      "if [ -f ./build/logs/clover.xml ]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover ./build/logs/clover.xml; fi"
+    ],
+    "cs": [
+      "php-cs-fixer fix --config=.php_cs --ansi --dry-run --diff --verbose --allow-risky=yes --show-progress=estimating"
+    ],
+    "cs-fix": [
+      "php-cs-fixer fix --config=.php_cs --ansi --verbose --allow-risky=yes --show-progress=estimating"
+    ],
+    "infection": [
+      "infection --ansi --min-msi=100 --min-covered-msi=100 --threads=4 --log-verbosity=all"
+    ],
+    "lint-php": [
+      "parallel-lint --exclude vendor ."
+    ],
+    "psalm": [
+      "psalm --threads=32"
+    ],
+    "qa-all": [
+      "composer validate --ansi",
+      "composer normalize --ansi",
+      "@lint-php",
+      "@cs",
+      "@stan",
+      "@psalm",
+      "@unit",
+      "@infection"
+    ],
+    "qa-all-extended": [
+      "composer validate --ansi",
+      "composer normalize --ansi",
+      "@lint-php",
+      "@cs",
+      "@stan",
+      "@psalm",
+      "@unit-coverage",
+      "@infection"
+    ],
+    "qa-ci": [
+      "@unit"
+    ],
+    "qa-ci-extended": [
+      "@qa-all-extended"
+    ],
+    "qa-ci-windows": [
+      "@qa-windows"
+    ],
+    "qa-contrib": [
+      "@qa-all"
+    ],
+    "stan": [
+      "phpstan analyse src tests --level max --ansi -c phpstan.neon"
+    ],
+    "unit": [
+      "phpunit --colors=always -c phpunit.xml.dist"
+    ],
+    "unit-coverage": [
+      "phpunit --colors=always -c phpunit.xml.dist --coverage-text --coverage-html covHtml --coverage-clover ./build/logs/clover.xml"
+    ]
   }
 }
