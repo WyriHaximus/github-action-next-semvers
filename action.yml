@@ -17,6 +17,15 @@ outputs:
   patch:
     description: 'Next Patch Version'
     required: true
+  v_mayor:
+    description: 'Next Mayor Version (prefixed with v)'
+    required: true
+  v_minor:
+    description: 'Next Minor Version (prefixed with v)'
+    required: true
+  v_patch:
+    description: 'Next Patch Version (prefixed with v)'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
