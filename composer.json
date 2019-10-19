@@ -1,6 +1,7 @@
 {
   "name": "void/void",
   "description": "void",
+  "license": "MIT",
   "require": {
     "php": "^7.3",
     "nikolaposa/version": "^3.2"
