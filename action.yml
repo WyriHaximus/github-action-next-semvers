@@ -1,30 +1,37 @@
-name: 'Files in commit(range)'
-description: 'CSV list of files in the given commit'
+name: 'Next SemVers'
+description: 'Output the next version for mayor, minor, and patch version based on the given semver version'
 branding:
   icon: 'clock'
   color: 'orange'
 input:
   version:
     description: 'A SemVer version'
+    type: string
     required: true
 outputs:
   mayor:
     description: 'Next Mayor Version'
+    type: string
     required: true
   minor:
     description: 'Next Minor Version'
+    type: string
     required: true
   patch:
     description: 'Next Patch Version'
+    type: string
     required: true
   v_mayor:
     description: 'Next Mayor Version (prefixed with v)'
+    type: string
     required: true
   v_minor:
     description: 'Next Minor Version (prefixed with v)'
+    type: string
     required: true
   v_patch:
     description: 'Next Patch Version (prefixed with v)'
+    type: string
     required: true
 runs:
   using: 'docker'
