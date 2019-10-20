@@ -46,16 +46,16 @@ final class NextTest extends TestCase
      *
      * @dataProvider provideVersions
      */
-    public function version(string $version, string $expectedMayor, string $expectedMinor, string $expectedPatch): void
+    public function version(string $version, string $expectedMajor, string $expectedMinor, string $expectedPatch): void
     {
         $output = Next::run($version);
         $output = \str_replace(\PHP_EOL, '', $output);
-        [$_, $mayor, $minor, $patch, $mayorV, $minorV, $patchV] = \explode('::set-output name=', $output);
+        [$_, $major, $minor, $patch, $majorV, $minorV, $patchV] = \explode('::set-output name=', $output);
 
-        self::assertSame('mayor::' . $expectedMayor, $mayor, 'mayor');
+        self::assertSame('major::' . $expectedMajor, $major, 'major');
         self::assertSame('minor::' . $expectedMinor, $minor, 'minor');
         self::assertSame('patch::' . $expectedPatch, $patch, 'patch');
-        self::assertSame('v_mayor::v' . $expectedMayor, $mayorV, 'v_mayor');
+        self::assertSame('v_major::v' . $expectedMajor, $majorV, 'v_major');
         self::assertSame('v_minor::v' . $expectedMinor, $minorV, 'v_minor');
         self::assertSame('v_patch::v' . $expectedPatch, $patchV, 'v_patch');
     }

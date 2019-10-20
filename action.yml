@@ -1,5 +1,5 @@
 name: 'Next SemVers'
-description: 'Output the next version for mayor, minor, and patch version based on the given semver version'
+description: 'Output the next version for major, minor, and patch version based on the given semver version'
 branding:
   icon: 'clock'
   color: 'orange'
@@ -9,8 +9,8 @@ input:
     type: string
     required: true
 outputs:
-  mayor:
-    description: 'Next Mayor Version'
+  major:
+    description: 'Next Major Version'
     type: string
     required: true
   minor:
@@ -21,8 +21,8 @@ outputs:
     description: 'Next Patch Version'
     type: string
     required: true
-  v_mayor:
-    description: 'Next Mayor Version (prefixed with v)'
+  v_major:
+    description: 'Next Major Version (prefixed with v)'
     type: string
     required: true
   v_minor:

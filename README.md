@@ -1,6 +1,6 @@
 # github-action-next-semvers
 
-Github Action that output the next version for mayor, minor, and patch version based on the given semver version.
+Github Action that output the next version for major, minor, and patch version based on the given semver version.
 
 ![Example output showing this action in action](images/output.png)
 
@@ -18,13 +18,13 @@ The version we want to have the next versions for.
 
 ## Output
 
-This action output 6 slightly different outputs. A new mayor, minor, and patch version and a variant of those prefixed 
+This action output 6 slightly different outputs. A new major, minor, and patch version and a variant of those prefixed 
 with a `v`. For example when you input `1.2.3` it will give you the following outputs:
 
-* `mayor`: `2.0.0`
+* `major`: `2.0.0`
 * `minor`: `1.3.0`
 * `patch`: `1.2.4`
-* `v_mayor`: `v2.0.0`
+* `v_major`: `v2.0.0`
 * `v_minor`: `v1.3.0`
 * `v_patch`: `v1.2.4`
 
