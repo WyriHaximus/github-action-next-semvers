@@ -3,36 +3,23 @@ description: 'Output the next version for major, minor, and patch version based 
 branding:
   icon: 'clock'
   color: 'orange'
-input:
+inputs:
   version:
     description: 'A SemVer version'
-    type: string
     required: true
 outputs:
   major:
     description: 'Next Major Version'
-    type: string
-    required: true
   minor:
     description: 'Next Minor Version'
-    type: string
-    required: true
   patch:
     description: 'Next Patch Version'
-    type: string
-    required: true
   v_major:
     description: 'Next Major Version (prefixed with v)'
-    type: string
-    required: true
   v_minor:
     description: 'Next Minor Version (prefixed with v)'
-    type: string
-    required: true
   v_patch:
     description: 'Next Patch Version (prefixed with v)'
-    type: string
-    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
