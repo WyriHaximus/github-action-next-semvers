@@ -28,6 +28,38 @@ with a `v`. For example when you input `1.2.3` it will give you the following ou
 * `v_minor`: `v1.3.0`
 * `v_patch`: `v1.2.4`
 
+## Example
+
+The following example works together with the [`WyriHaximus/github-action-get-previous-tag`](https://github.com/marketplace/actions/get-latest-tag) 
+and [`WyriHaximus/github-action-create-milestone`](https://github.com/marketplace/actions/create-milestone) actions. 
+Where it uses the output from that action to supply a set of versions for the next action, which creates a new 
+milestone. (This snippet has been taken from the automatic code generation of [`wyrihaximus/fake-php-version`](https://github.com/wyrihaximus/php-fake-php-version/).)
+
+```yaml
+name: Generate
+jobs:
+  generate:
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: 'Get next minor version'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@master"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+      - name: 'Create new milestone'
+        id: createmilestone
+        uses: "WyriHaximus/github-action-create-milestone@master"
+        with:
+          title: ${{ steps.semvers.outputs.patch }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+```
+
 ## License ##
 
 Copyright 2019 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
