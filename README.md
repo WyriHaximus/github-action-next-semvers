@@ -16,9 +16,17 @@ The version we want to have the next versions for.
 * *Type*: `string`
 * *Example*: `v1.2.3` or `1.2.3`
 
+### strict
+
+Strict version validation, when turned off, the version is suffixed with `.0` until it contains 3 x `.`.
+
+* *Required*: `No`
+* *Type*: `string`
+* *Example*: `true` or `false`
+
 ## Output
 
-This action output 6 slightly different outputs. A new major, minor, and patch version and a variant of those prefixed 
+This action output 6 slightly different outputs. A new major, minor, and patch version and a variant of those prefixed
 with a `v`. For example when you input `1.2.3` it will give you the following outputs:
 
 * `major`: `2.0.0`
@@ -30,9 +38,9 @@ with a `v`. For example when you input `1.2.3` it will give you the following ou
 
 ## Example
 
-The following example works together with the [`WyriHaximus/github-action-get-previous-tag`](https://github.com/marketplace/actions/get-latest-tag) 
-and [`WyriHaximus/github-action-create-milestone`](https://github.com/marketplace/actions/create-milestone) actions. 
-Where it uses the output from that action to supply a set of versions for the next action, which creates a new 
+The following example works together with the [`WyriHaximus/github-action-get-previous-tag`](https://github.com/marketplace/actions/get-latest-tag)
+and [`WyriHaximus/github-action-create-milestone`](https://github.com/marketplace/actions/create-milestone) actions.
+Where it uses the output from that action to supply a set of versions for the next action, which creates a new
 milestone. (This snippet has been taken from the automatic code generation of [`wyrihaximus/fake-php-version`](https://github.com/wyrihaximus/php-fake-php-version/).)
 
 ```yaml

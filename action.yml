@@ -7,6 +7,10 @@ inputs:
   version:
     description: 'A SemVer version'
     required: true
+  strict:
+    description: 'Strict version validation, when turned off, the version is suffixed with `.0` until it contains 3 x `.`.'
+    default: "true"
+    required: false
 outputs:
   major:
     description: 'Next Major Version'

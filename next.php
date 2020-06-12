@@ -11,7 +11,7 @@ exit((function (): int {
         return 1;
     }
 
-    echo Next::run($versionString);
+    echo Next::run($versionString, \getenv('INPUT_STRICT') === 'false' ? false : true);
 
     return 0;
 })());
