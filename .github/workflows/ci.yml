@@ -66,8 +66,6 @@ jobs:
           key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
       - name: Install Dependencies
         run: (test -f vendor && true ) || composer install --ansi --no-progress --no-interaction --prefer-dist -o
-      - run: sleep 60
-        if: matrix.qa == 'infection'
       - run: make ${{ matrix.qa }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
