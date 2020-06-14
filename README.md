@@ -1,6 +1,6 @@
 # Next SemVers
 
-Github Action that output the next version for major, minor, and patch version based on the given semver version.
+GitHub Action that output the next version for major, minor, and patch version based on the given semver version.
 
 ![Example output showing this action in action](images/output.png)
 
