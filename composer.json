@@ -4,7 +4,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.4",
-    "nikolaposa/version": "^3.2",
+    "nikolaposa/version": "^4.0",
     "wyrihaximus/constants": "^1.5"
   },
   "require-dev": {
