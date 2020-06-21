@@ -1,1 +1,1 @@
-FROM wyrihaximusgithubactions/next-semvers:master
+FROM wyrihaximusgithubactions/next-semvers:v1.0.0
