@@ -8,39 +8,39 @@ on:
       - master
   pull_request:
 jobs:
-    composer-install:
-        runs-on: ubuntu-latest
-        container:
-            image: wyrihaximusnet/php:7.4-zts-alpine3.11-dev-root
-        steps:
-            - uses: actions/checkout@v1
-            - name: Cache composer packages
-              uses: actions/cache@v1
-              with:
-                  path: ./vendor/
-                  key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
-            - name: Install Dependencies
-              run: composer install --ansi --no-progress --no-interaction --prefer-dist -o
-    qa:
-        strategy:
-            matrix:
-                qa: [lint, cs, stan, psalm, unit-ci, infection, composer-require-checker, composer-unused]
-        needs: composer-install
-        runs-on: ubuntu-latest
-        container:
-            image: wyrihaximusnet/php:7.4-zts-alpine3.11-dev-root
-        steps:
-            - uses: actions/checkout@v1
-            - name: Cache composer packages
-              uses: actions/cache@v1
-              with:
-                  path: ./vendor/
-                  key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
-            - name: Install Dependencies
-              run: (test -f vendor && true ) || composer install --ansi --no-progress --no-interaction --prefer-dist -o
-            - run: make ${{ matrix.qa }}
-              env:
-                  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  composer-install:
+    runs-on: ubuntu-latest
+    container:
+      image: wyrihaximusnet/php:7.4-zts-alpine3.11-dev-root
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache composer packages
+        uses: actions/cache@v1
+        with:
+          path: ./vendor/
+          key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
+      - name: Install Dependencies
+        run: composer install --ansi --no-progress --no-interaction --prefer-dist -o
+  qa:
+    strategy:
+      matrix:
+        qa: [lint, cs, stan, psalm, unit-ci, infection, composer-require-checker, composer-unused]
+    needs: composer-install
+    runs-on: ubuntu-latest
+    container:
+      image: wyrihaximusnet/php:7.4-zts-alpine3.11-dev-root
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache composer packages
+        uses: actions/cache@v1
+        with:
+          path: ./vendor/
+          key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
+      - name: Install Dependencies
+        run: (test -f vendor && true ) || composer install --ansi --no-progress --no-interaction --prefer-dist -o
+      - run: make ${{ matrix.qa }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   generate-ref:
     name: Generate Ref
     runs-on: ubuntu-latest
@@ -72,7 +72,6 @@ jobs:
   build-docker-image:
     name: Build Docker image
     needs:
-      - generate-changelog
       - generate-ref
       - lint-dockerfile
       - qa
