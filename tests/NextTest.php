@@ -1,12 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Tests\Github\Actions\NextSemVers;
 
 use Version\Exception\InvalidVersionString;
 use WyriHaximus\Github\Actions\NextSemVers\Next;
 use WyriHaximus\TestUtilities\TestCase;
+
 use function explode;
 use function str_replace;
+
 use const PHP_EOL;
 
 /**
