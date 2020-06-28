@@ -1,11 +1,15 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Github\Actions\NextSemVers;
 
 use Version\Exception\InvalidVersionString;
 use Version\Version;
+
 use function count;
 use function explode;
+
 use const PHP_EOL;
 use const WyriHaximus\Constants\Numeric\ONE;
 use const WyriHaximus\Constants\Numeric\TWO;
