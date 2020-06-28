@@ -2,7 +2,7 @@
 
 namespace WyriHaximus\Github\Actions\NextSemVers;
 
-use Version\Exception\InvalidVersionStringException;
+use Version\Exception\InvalidVersionString;
 use Version\Version;
 use function count;
 use function explode;
@@ -16,7 +16,7 @@ final class Next
     {
         try {
             $version = Version::fromString($versionString);
-        } catch (InvalidVersionStringException $invalidVersionException) {
+        } catch (InvalidVersionString $invalidVersionException) {
             if ($strict === true) {
                 throw $invalidVersionException;
             }
