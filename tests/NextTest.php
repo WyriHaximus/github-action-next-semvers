@@ -2,7 +2,7 @@
 
 namespace WyriHaximus\Tests\Github\Actions\NextSemVers;
 
-use Version\Exception\InvalidVersionStringException;
+use Version\Exception\InvalidVersionString;
 use WyriHaximus\Github\Actions\NextSemVers\Next;
 use WyriHaximus\TestUtilities\TestCase;
 use function explode;
@@ -102,7 +102,7 @@ final class NextTest extends TestCase
     public function strict(string $version, string $expectedMajor, string $expectedMinor, string $expectedPatch, bool $expectException): void
     {
         if ($expectException) {
-            self::expectException(InvalidVersionStringException::class);
+            self::expectException(InvalidVersionString::class);
         }
 
         $strict                                                    = true;
@@ -123,7 +123,7 @@ final class NextTest extends TestCase
      */
     public function impossibleVersion(): void
     {
-        self::expectException(InvalidVersionStringException::class);
+        self::expectException(InvalidVersionString::class);
 
         Next::run('as$#%$^&*()__dsa.dsasda.sdasdadsadsa', false);
     }
