@@ -36,6 +36,16 @@ with a `v`. For example when you input `1.2.3` it will give you the following ou
 * `v_minor`: `v1.3.0`
 * `v_patch`: `v1.2.4`
 
+In addition, if your input contains an indicator that it is a pre-release (e.g., `1.2.3-alpha`), the output for `patch` version changes accordingly (while the behaviour for `major` and `minor` are not affected and work as usual):
+
+* `major`: `2.0.0`
+* `minor`: `1.3.0`
+* `patch`: `1.2.3`
+* `v_major`: `v2.0.0`
+* `v_minor`: `v1.3.0`
+* `v_patch`: `v1.2.3`
+
+
 ## Example
 
 The following example works together with the [`WyriHaximus/github-action-get-previous-tag`](https://github.com/marketplace/actions/get-latest-tag)

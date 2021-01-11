@@ -23,12 +23,21 @@ final class NextTest extends TestCase
      */
     public function provideVersions(): iterable
     {
+        // Define versions in the following format
+        // yield 'INPUT VERSION' => [
+        //    INPUT VERSION,
+        //    EXPECTED MAJOR VERSION,
+        //    EXPECTED MINOR VERSION,
+        //    EXPECTED PATCH VERSION,
+        //    whether this raises an exception or not in strict mode
+        // ];
+
         yield '0.1.0' => [
-            '0.1.0',
-            '1.0.0',
-            '0.2.0',
-            '0.1.1',
-            false,
+            '0.1.0', // INPUT VERSION
+            '1.0.0', // EXPECTED MAJOR VERSION
+            '0.2.0', // EXPECTED MINOR VERSION
+            '0.1.1', // EXPECTED PATCH VERSION
+            false,   // should raise exception
         ];
 
         yield '0.1' => [
@@ -44,6 +53,30 @@ final class NextTest extends TestCase
             '2.0.0',
             '1.1.0',
             '1.0.1',
+            false,
+        ];
+
+        yield '0.1.0-alpha' => [
+            '0.1.0-alpha',
+            '1.0.0',
+            '0.2.0',
+            '0.1.0',
+            false,
+        ];
+
+        yield '0.1-alpha' => [
+            '0.1-alpha',
+            '1.0.0',
+            '0.2.0',
+            '0.1.0',
+            true,
+        ];
+
+        yield '1.0.0-alpha' => [
+            '1.0.0-alpha',
+            '2.0.0',
+            '1.1.0',
+            '1.0.0',
             false,
         ];
 
