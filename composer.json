@@ -8,11 +8,11 @@
     "wyrihaximus/constants": "^1.5"
   },
   "require-dev": {
-    "wyrihaximus/test-utilities": "^2.0"
+    "wyrihaximus/test-utilities": "^3.0"
   },
   "config": {
     "platform": {
-      "php": "7.4"
+      "php": "7.4.7"
     },
     "preferred-install": "dist",
     "sort-packages": true
