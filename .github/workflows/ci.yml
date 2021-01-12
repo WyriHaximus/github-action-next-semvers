@@ -24,7 +24,7 @@ jobs:
   qa:
     strategy:
       matrix:
-        qa: [lint, cs, stan, psalm, unit-ci, infection, composer-require-checker, composer-unused]
+        qa: [lint, cs, stan, psalm, unit, infection, composer-require-checker, composer-unused]
     needs: composer-install
     runs-on: ubuntu-latest
     container:
