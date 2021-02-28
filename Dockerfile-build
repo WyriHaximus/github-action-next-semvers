@@ -1,4 +1,4 @@
-FROM composer:1 AS runtime
+FROM composer:2 AS runtime
 
 RUN mkdir /workdir
 RUN mkdir /workdir/src
