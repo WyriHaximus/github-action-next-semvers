@@ -74,7 +74,7 @@ final class Next
             // increment major/minor/patch version
             $output .= '"patch=' . $version->incrementPatch() . "\"\n";
             // v prefixed versions
-            $output .= '"v_patch=v' . $version->incrementPatch();
+            $output .= '"v_patch=v' . $version->incrementPatch() . "\"\n";
         }
 
         return $output;
