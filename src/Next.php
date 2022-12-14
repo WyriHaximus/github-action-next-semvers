@@ -11,7 +11,6 @@ use function count;
 use function explode;
 use function strpos;
 
-use const PHP_EOL;
 use const WyriHaximus\Constants\Numeric\ONE;
 use const WyriHaximus\Constants\Numeric\TWO;
 
