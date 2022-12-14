@@ -55,26 +55,26 @@ final class Next
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Raw versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output  = '::set-output name=major::' . $version->incrementMajor() . PHP_EOL;
-        $output .= '::set-output name=minor::' . $version->incrementMinor() . PHP_EOL;
+        $output  = '"major=' . $version->incrementMajor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+        $output .= '"minor=' . $version->incrementMinor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // v prefixed versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output .= '::set-output name=v_major::v' . $version->incrementMajor() . PHP_EOL;
-        $output .= '::set-output name=v_minor::v' . $version->incrementMinor() . PHP_EOL;
+        $output .= '"v_major=v' . $version->incrementMajor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+        $output .= '"v_minor=v' . $version->incrementMinor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
 
         // check if current version is a pre-release
         if ($wasPreRelease) {
             // use current version (without pre-release)
-            $output .= '::set-output name=patch::' . $version . PHP_EOL;
+            $output .= '"patch=' . $version . '" >> $GITHUB_OUTPUT' . PHP_EOL;
             // v prefixed versions
-            $output .= '::set-output name=v_patch::v' . $version . PHP_EOL;
+            $output .= '"v_patch=v' . $version . '" >> $GITHUB_OUTPUT' . PHP_EOL;
         } else {
             // increment major/minor/patch version
-            $output .= '::set-output name=patch::' . $version->incrementPatch() . PHP_EOL;
+            $output .= '"patch=' . $version->incrementPatch() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
             // v prefixed versions
-            $output .= '::set-output name=v_patch::v' . $version->incrementPatch() . PHP_EOL;
+            $output .= '"v_patch=v' . $version->incrementPatch() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
         }
 
         return $output;
