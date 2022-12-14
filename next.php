@@ -11,7 +11,7 @@ exit((function (): int {
         return 1;
     }
 
-    echo Next::run($versionString, \getenv('INPUT_STRICT') === 'false' ? false : true);
+    file_put_contents(getenv('GITHUB_OUTPUT'), Next::run($versionString, \getenv('INPUT_STRICT') === 'false' ? false : true), FILE_APPEND);
 
     return 0;
 })());

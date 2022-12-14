@@ -25,12 +25,12 @@ jobs:
       - run: |
           if [ $(echo ${GITTAG} | wc -c) -eq 1 ] ; then
             printf "Falling back to v1.0.0 as \"%s\" is unexpectedly empty\r\n" "${GITTAG}"
-            printf "tag=%s >> $GITHUB_OUTPUT" "v1.0.0"
+            printf "tag=%s" "v1.0.0" >> $GITHUB_OUTPUT
             exit 0
           fi
 
           printf "Using \"%s\"\r\n" "${GITTAG}"
-          printf "tag=%s >> $GITHUB_OUTPUT" "${GITTAG}"
+          printf "tag=%s" "${GITTAG}" >> $GITHUB_OUTPUT
         name: Fall back to v1.0.0 if we haven't tagged anything yet
         if: github.event.pull_request.milestone == null
         id: previoustag
@@ -48,13 +48,13 @@ jobs:
             echo "Is dependabot PR"
             if [[ "$(printenv MILESTONES | jq -c '. | length')" -eq "0" ]] ; then
               echo "No milestone exists, usint patch version for next milestone"
-              printf "milestone=%s >> $GITHUB_OUTPUT" "${PATCH}"
+              printf "milestone=%s" "${PATCH}" >> $GITHUB_OUTPUT
               exit 0
             fi
           fi
 
           echo "Using default minor version for next milestone"
-          printf "milestone=%s >> $GITHUB_OUTPUT" "${MINOR}"
+          printf "milestone=%s" "${MINOR}" >> $GITHUB_OUTPUT
         name: Decide which version to use as milestone
         if: github.event.pull_request.milestone == null
         id: milestone
@@ -72,7 +72,7 @@ jobs:
         id: milestones
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - run: printf "number=%s >> $GITHUB_OUTPUT" $(printenv MILESTONES | jq --arg MILESTONE $(printenv MILESTONE) '.[]  | select(.title == $MILESTONE) | .number')
+      - run: printf "number=%s" $(printenv MILESTONES | jq --arg MILESTONE $(printenv MILESTONE) '.[]  | select(.title == $MILESTONE) | .number') >> $GITHUB_OUTPUT
         if: github.event.pull_request.milestone == null
         id: querymilestone
         env:
@@ -91,11 +91,11 @@ jobs:
         id: selectmilestone
         run: |
           if [ $(echo ${QUERY_NUMBER} | wc -c) -eq 1 ] ; then
-            printf "number=%s >> $GITHUB_OUTPUT" "${CREATED_NUMBER}"
+            printf "number=%s" "${CREATED_NUMBER}" >> $GITHUB_OUTPUT
             exit 0
           fi
 
-          printf "number=%s >> $GITHUB_OUTPUT" "${QUERY_NUMBER}"
+          printf "number=%s" "${QUERY_NUMBER}" >> $GITHUB_OUTPUT
         env:
           CREATED_NUMBER: ${{ steps.createmilestone.outputs.number }}
           QUERY_NUMBER: ${{ steps.querymilestone.outputs.number }}

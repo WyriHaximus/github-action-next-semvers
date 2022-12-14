@@ -55,26 +55,26 @@ final class Next
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Raw versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output  = '"major=' . $version->incrementMajor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
-        $output .= '"minor=' . $version->incrementMinor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+        $output  = '"major=' . $version->incrementMajor() . "\"\n";
+        $output .= '"minor=' . $version->incrementMinor() . "\"\n";
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // v prefixed versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output .= '"v_major=v' . $version->incrementMajor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
-        $output .= '"v_minor=v' . $version->incrementMinor() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+        $output .= '"v_major=v' . $version->incrementMajor() . "\"\n";
+        $output .= '"v_minor=v' . $version->incrementMinor() . "\"\n";
 
         // check if current version is a pre-release
         if ($wasPreRelease) {
             // use current version (without pre-release)
-            $output .= '"patch=' . $version . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+            $output .= '"patch=' . $version . "\"\n";
             // v prefixed versions
-            $output .= '"v_patch=v' . $version . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+            $output .= '"v_patch=v' . $version . "\"\n";
         } else {
             // increment major/minor/patch version
-            $output .= '"patch=' . $version->incrementPatch() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+            $output .= '"patch=' . $version->incrementPatch() . "\"\n";
             // v prefixed versions
-            $output .= '"v_patch=v' . $version->incrementPatch() . '" >> $GITHUB_OUTPUT' . PHP_EOL;
+            $output .= '"v_patch=v' . $version->incrementPatch();
         }
 
         return $output;
