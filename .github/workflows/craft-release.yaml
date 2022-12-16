@@ -46,10 +46,10 @@ jobs:
           MAJOR_MINOR: ${{ steps.breakupsemver.outputs.v_major_minor }}
           MAJOR_MINOR_PATCH: ${{ steps.breakupsemver.outputs.v_major_minor_patch }}
         run: |
-          echo "::set-output name=docker_versions::[\"${MAJOR}\",\"${MAJOR_MINOR}\",\"${MAJOR_MINOR_PATCH}\"]"
+          echo "docker_versions=[\"${MAJOR}\",\"${MAJOR_MINOR}\",\"${MAJOR_MINOR_PATCH}\"]" >> $GITHUB_OUTPUT
           git tag > tag.list
           cat tag.list
-          printf "::set-output name=tag_versions::%s" $(jq --raw-input --slurp 'split("\n")' tag.list -c | php -r "echo json_encode(array_values(array_diff_assoc(json_decode('[\"${MAJOR}\",\"${MAJOR_MINOR}\",\"${MAJOR_MINOR_PATCH}\"]'), json_decode(stream_get_contents(STDIN)))));")
+          printf "tag_versions=%s" $(jq --raw-input --slurp 'split("\n")' tag.list -c | php -r "echo json_encode(array_values(array_diff_assoc(json_decode('[\"${MAJOR}\",\"${MAJOR_MINOR}\",\"${MAJOR_MINOR_PATCH}\"]'), json_decode(stream_get_contents(STDIN)))));") >> $GITHUB_OUTPUT
   generate-changelog:
     name: Generate Changelog
     needs:
@@ -124,7 +124,7 @@ jobs:
           release_message="${release_message//'%'/'%25'}"
           release_message="${release_message//$'\n'/'%0A'}"
           release_message="${release_message//$'\r'/'%0D'}"
-          echo "::set-output name=release_message::$release_message"
+          echo "release_message=$release_message" >> $GITHUB_OUTPUT
         id: releasemessage
         env:
           MILESTONE_DESCRIPTION: ${{ github.event.milestone.description }}

@@ -55,11 +55,11 @@ jobs:
           if [ "${{ github.event_name }}" == "pull_request" ] ; then
             ref=$(php -r "echo str_replace('/', '-SLASH-', '${{ github.event.pull_request.head.ref }}');")
             echo "$ref"
-            printf "::set-output name=ref::%s" $ref
+            printf "ref=%s" $ref >> $GITHUB_OUTPUT
             exit 0
           fi
           echo "${GITHUB_REF##*/}"
-          echo "::set-output name=ref::${GITHUB_REF##*/}"
+          echo "ref=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
   lint-dockerfile:
     name: Lint Dockerfile
     runs-on: ubuntu-latest

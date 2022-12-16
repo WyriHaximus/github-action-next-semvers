@@ -11,7 +11,6 @@ use function count;
 use function explode;
 use function strpos;
 
-use const PHP_EOL;
 use const WyriHaximus\Constants\Numeric\ONE;
 use const WyriHaximus\Constants\Numeric\TWO;
 
@@ -55,26 +54,26 @@ final class Next
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Raw versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output  = '::set-output name=major::' . $version->incrementMajor() . PHP_EOL;
-        $output .= '::set-output name=minor::' . $version->incrementMinor() . PHP_EOL;
+        $output  = '"major=' . $version->incrementMajor() . "\"\n";
+        $output .= '"minor=' . $version->incrementMinor() . "\"\n";
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // v prefixed versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output .= '::set-output name=v_major::v' . $version->incrementMajor() . PHP_EOL;
-        $output .= '::set-output name=v_minor::v' . $version->incrementMinor() . PHP_EOL;
+        $output .= '"v_major=v' . $version->incrementMajor() . "\"\n";
+        $output .= '"v_minor=v' . $version->incrementMinor() . "\"\n";
 
         // check if current version is a pre-release
         if ($wasPreRelease) {
             // use current version (without pre-release)
-            $output .= '::set-output name=patch::' . $version . PHP_EOL;
+            $output .= '"patch=' . $version . "\"\n";
             // v prefixed versions
-            $output .= '::set-output name=v_patch::v' . $version . PHP_EOL;
+            $output .= '"v_patch=v' . $version . "\"\n";
         } else {
             // increment major/minor/patch version
-            $output .= '::set-output name=patch::' . $version->incrementPatch() . PHP_EOL;
+            $output .= '"patch=' . $version->incrementPatch() . "\"\n";
             // v prefixed versions
-            $output .= '::set-output name=v_patch::v' . $version->incrementPatch() . PHP_EOL;
+            $output .= '"v_patch=v' . $version->incrementPatch() . "\"\n";
         }
 
         return $output;

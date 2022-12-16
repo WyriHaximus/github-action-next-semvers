@@ -117,12 +117,12 @@ final class NextTest extends TestCase
         $strict = false;
         $output = Next::run($version, $strict);
 
-        self::assertStringContainsString('major::' . $expectedMajor, $output, 'major');
-        self::assertStringContainsString('minor::' . $expectedMinor, $output, 'minor');
-        self::assertStringContainsString('patch::' . $expectedPatch, $output, 'patch');
-        self::assertStringContainsString('v_major::v' . $expectedMajor, $output, 'v_major');
-        self::assertStringContainsString('v_minor::v' . $expectedMinor, $output, 'v_minor');
-        self::assertStringContainsString('v_patch::v' . $expectedPatch, $output, 'v_patch');
+        self::assertStringContainsString('major=' . $expectedMajor, $output, 'major');
+        self::assertStringContainsString('minor=' . $expectedMinor, $output, 'minor');
+        self::assertStringContainsString('patch=' . $expectedPatch, $output, 'patch');
+        self::assertStringContainsString('v_major=v' . $expectedMajor, $output, 'v_major');
+        self::assertStringContainsString('v_minor=v' . $expectedMinor, $output, 'v_minor');
+        self::assertStringContainsString('v_patch=v' . $expectedPatch, $output, 'v_patch');
     }
 
     /**
@@ -138,12 +138,12 @@ final class NextTest extends TestCase
         $strict = true;
         $output = Next::run($version, $strict);
 
-        self::assertStringContainsString('major::' . $expectedMajor, $output, 'major');
-        self::assertStringContainsString('minor::' . $expectedMinor, $output, 'minor');
-        self::assertStringContainsString('patch::' . $expectedPatch, $output, 'patch');
-        self::assertStringContainsString('v_major::v' . $expectedMajor, $output, 'v_major');
-        self::assertStringContainsString('v_minor::v' . $expectedMinor, $output, 'v_minor');
-        self::assertStringContainsString('v_patch::v' . $expectedPatch, $output, 'v_patch');
+        self::assertStringContainsString('major=' . $expectedMajor, $output, 'major');
+        self::assertStringContainsString('minor=' . $expectedMinor, $output, 'minor');
+        self::assertStringContainsString('patch=' . $expectedPatch, $output, 'patch');
+        self::assertStringContainsString('v_major=v' . $expectedMajor, $output, 'v_major');
+        self::assertStringContainsString('v_minor=v' . $expectedMinor, $output, 'v_minor');
+        self::assertStringContainsString('v_patch=v' . $expectedPatch, $output, 'v_patch');
     }
 
     /**
