@@ -10,24 +10,14 @@
     },
      "mutators": {
          "@default": true,
-         "Multiplication": {
+         "ConcatOperandRemoval": {
              "ignore": [
-                 "WyriHaximus\\React\\SimpleORM\\Repository::page"
+                 "WyriHaximus\\Github\\Actions\\NextSemVers\\Next::run"
              ]
          },
-         "Decrement": {
+         "Throw_": {
              "ignore": [
-                 "WyriHaximus\\React\\SimpleORM\\Repository::page"
-             ]
-         },
-         "IncrementInteger": {
-             "ignore": [
-                 "WyriHaximus\\React\\SimpleORM\\Repository::count"
-             ]
-         },
-         "OneZeroInteger": {
-             "ignore": [
-                 "WyriHaximus\\React\\SimpleORM\\Repository::count"
+                 "WyriHaximus\\Github\\Actions\\NextSemVers\\Next::run"
              ]
          }
      }
