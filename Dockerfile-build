@@ -1,8 +1,8 @@
 FROM composer:1 AS runtime
 
 RUN mkdir /workdir
-RUN mkdir /workdir/src
 COPY next.php /workdir
+RUN mkdir /workdir/src
 COPY src/ /workdir/src
 COPY ./composer.json /workdir
 COPY ./composer.lock /workdir
