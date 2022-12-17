@@ -87,7 +87,7 @@ jobs:
       - run: docker tag "${DOCKER_IMAGE}:${REF}" "${DOCKER_IMAGE}:sha-${GITHUB_SHA}"
         env:
           REF: ${{ needs.generate-ref.outputs.ref }}
-      - run: docker run -v /tmp/trivy:/var/lib/trivy -v /var/run/docker.sock:/var/run/docker.sock -t aquasec/trivy:latest --cache-dir /var/lib/trivy image --exit-code 1 --no-progress --format table $(echo "${DOCKER_IMAGE}:${REF}")')
+      - run: docker run -v /tmp/trivy:/var/lib/trivy -v /var/run/docker.sock:/var/run/docker.sock -t aquasec/trivy:latest --cache-dir /var/lib/trivy image --exit-code 1 --no-progress --format table $(echo "${DOCKER_IMAGE}:${REF}")
         env:
           REF: ${{ needs.generate-ref.outputs.ref }}
       - run: docker images
