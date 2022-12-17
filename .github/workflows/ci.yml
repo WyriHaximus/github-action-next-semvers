@@ -11,7 +11,7 @@ jobs:
   composer-install:
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:7.4-zts-alpine3.11-dev-root
+      image: wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root
     steps:
       - uses: actions/checkout@v1
       - name: Cache composer packages
@@ -25,11 +25,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qa: [lint, cs, stan, psalm, unit, infection, composer-require-checker, composer-unused]
+        qa: [cs, stan, psalm, unit, composer-require-checker, composer-unused]
     needs: composer-install
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:7.4-zts-alpine3.11-dev-root
+      image: wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root
     steps:
       - uses: actions/checkout@v1
       - name: Cache composer packages
