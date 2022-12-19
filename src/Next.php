@@ -54,26 +54,26 @@ final class Next
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Raw versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output  = '"major=' . $version->incrementMajor() . "\"\n";
-        $output .= '"minor=' . $version->incrementMinor() . "\"\n";
+        $output  = 'major=' . $version->incrementMajor() . "\n";
+        $output .= 'minor=' . $version->incrementMinor() . "\n";
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // v prefixed versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output .= '"v_major=v' . $version->incrementMajor() . "\"\n";
-        $output .= '"v_minor=v' . $version->incrementMinor() . "\"\n";
+        $output .= 'v_major=v' . $version->incrementMajor() . "\n";
+        $output .= 'v_minor=v' . $version->incrementMinor() . "\n";
 
         // check if current version is a pre-release
         if ($wasPreRelease) {
             // use current version (without pre-release)
-            $output .= '"patch=' . $version . "\"\n";
+            $output .= 'patch=' . $version . "\n";
             // v prefixed versions
-            $output .= '"v_patch=v' . $version . "\"\n";
+            $output .= 'v_patch=v' . $version . "\n";
         } else {
             // increment major/minor/patch version
-            $output .= '"patch=' . $version->incrementPatch() . "\"\n";
+            $output .= 'patch=' . $version->incrementPatch() . "\n";
             // v prefixed versions
-            $output .= '"v_patch=v' . $version->incrementPatch() . "\"\n";
+            $output .= 'v_patch=v' . $version->incrementPatch() . "\n";
         }
 
         return $output;
