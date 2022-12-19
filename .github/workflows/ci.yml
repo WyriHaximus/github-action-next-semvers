@@ -109,3 +109,25 @@ jobs:
       - name: Push commit sha image to Docker Hub
         if: contains(github.ref, 'dependabot') == false
         run: docker push "${DOCKER_IMAGE}:sha-${GITHUB_SHA}"
+  function-test:
+    name: Functional Testing
+    needs:
+      - build-docker-image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: sed -i $(echo "s/master/sha-$GITHUB_SHA/g") Dockerfile
+      - name: 'Get Previous tag'
+        id: semvers
+        uses: ./
+        with:
+          version: v1.1.1
+      - name: Print Output
+        run: |
+          echo "${{ steps.semvers.outputs.v_patch }}"
+          echo "${{ steps.semvers.outputs.patch }}"
+          echo "${{ steps.semvers.outputs.v_minor }}"
+          echo "${{ steps.semvers.outputs.minor }}"
+          echo "${{ steps.semvers.outputs.major }}"
+          echo "${{ steps.semvers.outputs.v_major }}"
+          echo "${{ toJSON(steps.semvers.outputs) }}"
