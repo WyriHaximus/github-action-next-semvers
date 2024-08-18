@@ -7,11 +7,18 @@ inputs:
   version:
     description: 'A SemVer version'
     required: true
+  min_version:
+    description: 'Minimum SemVer version (all outputs will be >= to this version)'
+    required: true
   strict:
-    description: 'Strict version validation, when turned off, the version is suffixed with `.0` until it contains 3 x `.`.'
+    description: 'Strict version validation, when turned off, the version is suffixed with `.0` until it contains 2 x `.`.'
     default: "true"
     required: false
 outputs:
+  current:
+    description: 'Current Version'
+  v_current:
+    description: 'Current Version (prefixed with v)'
   major:
     description: 'Next Major Version'
   minor:

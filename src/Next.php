@@ -18,7 +18,7 @@ final class Next
 {
     private const PRE_RELEASE_CHUNK_COUNT = 2;
 
-    public static function run(string $versionString, bool $strict): string
+    public static function run(string $versionString, string $minimumVersionString, bool $strict): string
     {
         try {
             $version = Version::fromString($versionString);
@@ -42,6 +42,8 @@ final class Next
             return self::run($versionString, $strict);
         }
 
+        $minVersion = Version::fromString($minimumVersionString);
+
         $wasPreRelease = false;
 
         // if current version is a pre-release
@@ -51,15 +53,21 @@ final class Next
             $wasPreRelease = true;
         }
 
+        if ($version->isLessThan($minVersion)) {
+            $version = $minVersion;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Raw versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        $output  = 'major=' . $version->incrementMajor() . "\n";
+        $output  = 'current=' . $version . "\n";
+        $output .= 'major=' . $version->incrementMajor() . "\n";
         $output .= 'minor=' . $version->incrementMinor() . "\n";
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // v prefixed versions
         ///////////////////////////////////////////////////////////////////////////////////////////////
+        $output  = 'v_current=v' . $version . "\n";
         $output .= 'v_major=v' . $version->incrementMajor() . "\n";
         $output .= 'v_minor=v' . $version->incrementMinor() . "\n";
 

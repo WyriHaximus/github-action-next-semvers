@@ -16,9 +16,17 @@ The version we want to have the next versions for.
 * *Type*: `string`
 * *Example*: `v1.2.3` or `1.2.3`
 
+### min_version
+
+The minimum version we want to have the next versions for. Must be a valid SemVer.
+
+* *Required*: `Yes`
+* *Type*: `string`
+* *Example*: `v1.2.3` or `1.2.3`
+
 ### strict
 
-Strict version validation, when turned off, the version is suffixed with `.0` until it contains 3 x `.`.
+Strict version validation, when turned off, the version is suffixed with `.0` until it contains 2 x `.`.
 
 * *Required*: `No`
 * *Type*: `string`
