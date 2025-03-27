@@ -13,7 +13,7 @@ jobs:
     container:
       image: wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Cache composer packages
         uses: actions/cache@v4
         with:
@@ -31,7 +31,7 @@ jobs:
     container:
       image: wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Cache composer packages
         uses: actions/cache@v4
         with:
@@ -48,7 +48,7 @@ jobs:
     outputs:
       REF: ${{ steps.generate-ref.outputs.ref }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - id: generate-ref
         name: Generate Ref
         run: |
@@ -64,7 +64,7 @@ jobs:
     name: Lint Dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Lint Dockerfile
         uses: docker://hadolint/hadolint:latest-debian
         with:
@@ -78,7 +78,7 @@ jobs:
       - qa
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - run: docker version
       - run: docker images
       - run: docker build --no-cache -t "${DOCKER_IMAGE}:${REF}" . -f Dockerfile-build --target=runtime
@@ -115,7 +115,7 @@ jobs:
       - build-docker-image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: sed -i $(echo "s/master/sha-$GITHUB_SHA/g") Dockerfile
       - name: 'Get Previous tag'
         id: semvers
