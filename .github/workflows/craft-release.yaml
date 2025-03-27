@@ -11,7 +11,7 @@ jobs:
     name: Wait for status checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - run: sleep 13
       - name: 'Wait for status checks'
         id: waitforstatuschecks
@@ -34,7 +34,7 @@ jobs:
       docker_versions: ${{ steps.generate-version-strategy.outputs.docker_versions }}
       tag_versions: ${{ steps.generate-version-strategy.outputs.tag_versions }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - uses: WyriHaximus/github-action-break-up-semver@v1
         id: breakupsemver
         with:
@@ -107,7 +107,7 @@ jobs:
         version: ${{ fromJson(needs.generate-version-strategy.outputs.tag_versions) }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Create release/${{ matrix.version }} branch
         run: git checkout -b release/${{ matrix.version }} ${GITHUB_SHA}
       - run: sed -i 's/master/${{ matrix.version }}/g' Dockerfile
