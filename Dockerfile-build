@@ -1,4 +1,4 @@
-FROM wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root AS dependencies
+FROM wyrihaximusnet/php:8.4-nts-alpine-slim-dev-root AS dependencies
 
 RUN mkdir /workdir
 COPY next.php /workdir
@@ -10,7 +10,7 @@ WORKDIR /workdir
 
 RUN composer install --ansi --no-progress --no-interaction --prefer-dist --no-dev -o
 
-FROM wyrihaximusnet/php:8.2-nts-alpine-slim-root AS runtime
+FROM wyrihaximusnet/php:8.4-nts-alpine-slim-root AS runtime
 
 COPY --from=dependencies /workdir/ /workdir/
 
