@@ -8,7 +8,7 @@
     "wyrihaximus/constants": "^1.6"
   },
   "require-dev": {
-    "wyrihaximus/test-utilities": "^5.2.1"
+    "wyrihaximus/test-utilities": "^5.2.1 || ^6.0.0"
   },
   "autoload": {
     "psr-4": {
