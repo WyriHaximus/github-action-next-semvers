@@ -11,7 +11,7 @@ jobs:
   composer-install:
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root
+      image: wyrihaximusnet/php:8.4-nts-alpine-slim-dev-root
     steps:
       - uses: actions/checkout@v4
       - name: Cache composer packages
@@ -29,7 +29,7 @@ jobs:
     needs: composer-install
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root
+      image: wyrihaximusnet/php:8.4-nts-alpine-slim-dev-root
     steps:
       - uses: actions/checkout@v4
       - name: Cache composer packages
