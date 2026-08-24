@@ -167,7 +167,7 @@ jobs:
           prerelease: false
           commitish: release/${{ matrix.version }}
       - name: Delete release/${{ matrix.version }} branch
-        uses: dawidd6/action-delete-branch@d1efac9a6f7a9b408d4e8ff663a99c1fbac17b3f # v3
+        uses: dawidd6/action-delete-branch@d1efac9a6f7a9b408d4e8ff663a99c1fbac17b3f # v3.1.0
         with:
           github_token: ${{github.token}}
           branches: release/${{ matrix.version }}
