@@ -59,7 +59,7 @@ jobs:
       changelog: ${{ steps.changelog.outputs.changelog }}
     steps:
       - name: Generate changelog
-        uses: WyriHaximus/github-action-jwage-changelog-generator@ede372670d88c4afefdffbcba5527e9e3a37778a # v1
+        uses: WyriHaximus/github-action-jwage-changelog-generator@ede372670d88c4afefdffbcba5527e9e3a37778a # v1.4.0
         id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
