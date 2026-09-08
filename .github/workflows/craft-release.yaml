@@ -15,7 +15,7 @@ jobs:
       - run: sleep 13
       - name: 'Wait for status checks'
         id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@master"
+        uses: "WyriHaximus/github-action-wait-for-status@1c37635c83295bd8d5d17114e59ae4bbad4f537c" # master
         with:
           ignoreActions: "Wait for status checks"
           checkInterval: 5
@@ -144,7 +144,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Reference Release with Changelog
         if: ${{ matrix.version == env.MILESTONE }}
-        uses: fleskesvor/create-release@feature/support-target-commitish
+        uses: fleskesvor/create-release@62b2b8381c0553b558eabcfd4ef3a1ce4a44d42d # feature/support-target-commitish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -156,7 +156,7 @@ jobs:
           commitish: release/${{ matrix.version }}
       - name: Create Release with Changelog
         if: ${{ matrix.version != env.MILESTONE }}
-        uses: fleskesvor/create-release@feature/support-target-commitish
+        uses: fleskesvor/create-release@62b2b8381c0553b558eabcfd4ef3a1ce4a44d42d # feature/support-target-commitish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
