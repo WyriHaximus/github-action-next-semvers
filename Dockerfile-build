@@ -1,4 +1,4 @@
-FROM wyrihaximusnet/php:8.2-nts-alpine-slim-dev-root AS dependencies
+FROM wyrihaximusnet/php:8.2-nts-alpine-slim-root AS dependencies
 
 RUN mkdir /workdir
 COPY next.php /workdir
